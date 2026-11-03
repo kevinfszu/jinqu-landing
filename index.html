@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>近取 · 就近取用</title>
+<meta name="description" content="近取 · 就近取用。常用文件放在手边，要用时拖出去。把常用的表格、模板、文件和链接收进一块随手唤出的悬浮面板，拖到微信、文件管理器、Word 里直接用。" />
+<link rel="icon" href="assets/img/mascot.png" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<!-- 全页下载地址只有这一个来源：安装包与页面同源，放在 download/ 下，download 属性才能真正生效。
+     留空时，顶部「下载」按钮与页尾 CTA 都指向页尾下载区块 #download，不会死链。 -->
+<body data-download-url="download/jinqu-0.1.0-x64-setup.exe">
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img src="assets/img/mascot.webp" alt="近取图标" width="32" height="32" />
+      <span>近取</span>
+      <em>Windows</em>
+    </div>
+    <nav class="nav">
+      <a href="#pain">为什么</a>
+      <a href="#start">三步上手</a>
+      <a href="#what">是什么</a>
+      <a href="#drag-in">拖进来</a>
+      <a href="#drag-out">拖出去</a>
+      <a href="#more">亮点</a>
+    </nav>
+    <a class="btn btn-sm" href="#download" data-download>
+      <svg class="dl-ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+        <path d="M8 1.8v7.1m0 0 2.9-2.9m-2.9 2.9-2.9-2.9M2.7 11.1v1.7c0 .9.7 1.6 1.6 1.6h7.4c.9 0 1.6-.7 1.6-1.6v-1.7"
+              fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      </svg>
+      下载
+    </a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">常用文件 · 放在手边</p>
+        <h1 class="slogan">
+          近取 · <span class="slogan-strong">就近取用</span>
+        </h1>
+        <p class="slogan-sub">常用文件放在手边，要用时拖出去</p>
+        <div class="hero-actions">
+          <a class="btn" href="#start">三步上手</a>
+          <a class="btn btn-ghost" href="#what">它是什么</a>
+        </div>
+        <ul class="hero-meta">
+          <li>屏幕左侧边缘的上半部分，贴边 0.3 秒唤出</li>
+          <li>甩一甩鼠标也能唤出</li>
+          <li><kbd>Ctrl</kbd><span>+</span><kbd>Alt</kbd><span>+</span><kbd>Space</kbd> 随时唤出</li>
+          <li>失焦自动收起，不挡工作</li>
+        </ul>
+      </div>
+
+      <div class="hero-visual reveal" data-delay="1">
+        <div class="float-chip float-chip-a">常用文件拖进来</div>
+        <div class="float-chip float-chip-b">拖出去直接用</div>
+        <div class="panel-frame">
+          <img class="panel-shot" src="assets/img/hero-panel.webp"
+                 alt="近取悬浮面板实机截图：顶部是分组标签，下面按分序列着文件、链接、文件夹条目" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 痛点 ============ -->
+  <section id="pain" class="section">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">日常</p>
+        <h2>东西都在，就是不在手边</h2>
+        <p class="sec-lead">
+          常用的文件和链接，散在下载目录、桌面、聊天记录和三四层深的文件夹里。
+          真要用的那一刻，得从这些地方一路翻过去，时间花在找，而不是用。
+        </p>
+      </div>
+      <div class="pain-grid">
+        <article class="card pain reveal">
+          <span class="num">01</span>
+          <h3>下载目录是一条倒序流水</h3>
+          <p>表格、图片、安装包全按时间堆在同一个列表里，名字还常常只差一个日期。</p>
+        </article>
+        <article class="card pain reveal" data-delay="1">
+          <span class="num">02</span>
+          <h3>桌面上的文件被窗口盖住</h3>
+          <p>常用的几份摊在桌面，一开窗口就压在下面，只能先最小化窗口再翻找。</p>
+        </article>
+        <article class="card pain reveal" data-delay="2">
+          <span class="num">03</span>
+          <h3>链接沉在聊天记录里</h3>
+          <p>上周发过的地址，要往上翻两屏才见得到；翻到了，还得再复制一次。</p>
+        </article>
+        <article class="card pain reveal" data-delay="3">
+          <span class="num">04</span>
+          <h3>深层文件夹要连点四下</h3>
+          <p>项目 / 客户 / 2026 / 终版_v3，要用的那一份在最里面，每周都要重走一遍这条路径。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 三步上手（核心叙事） ============ -->
+  <section id="start" class="section section-tint">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">上手 · 先学会这一下</p>
+        <h2>三步，就顺了<span class="head-badge">第 1 步 · 最关键</span></h2>
+        <p class="sec-lead">
+          装好之后它不会自己弹出来，先用一个小动作把它叫到眼前。
+          之后就三步：唤出 → 收进来 → 拖出去。
+        </p>
+      </div>
+
+      <!-- 三步连贯演示 -->
+      <div class="flow reveal" data-flow data-stage="0">
+        <div class="flow-head">
+          <div>
+            <strong>同一块浮窗，走完这三步</strong>
+            <span>唤出 → 收进常用的 → 拖出去用</span>
+          </div>
+          <button class="flow-btn" type="button" data-flow-toggle aria-pressed="false">暂停</button>
+        </div>
+
+        <div class="flow-stage">
+          <div class="fs-desk">
+            <span class="fs-hint">拖着文件，快速左右甩一下</span>
+          </div>
+
+          <div class="fs-panel">
+            <img src="assets/img/panel-list.webp" alt="近取面板列表实机截图" />
+            <span class="fs-new"><i class="fs-doc">X</i>报价单.xlsx</span>
+          </div>
+
+          <div class="fs-fields">
+            <div class="fs-target"><span class="fs-ico">微</span>微信聊天窗口</div>
+            <div class="fs-target"><span class="fs-ico">夹</span>文件管理器</div>
+            <div class="fs-target"><span class="fs-ico">W</span>Word 文档</div>
+          </div>
+
+          <span class="fs-fly" aria-hidden="true">
+            <i class="fs-doc">X</i>报价单.xlsx
+            <svg class="fs-grab" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 3.2 18.5 11l-5.6 1.2 2.6 5.7-2.4 1.1-2.6-5.7-4.5 3.9z"
+                    fill="currentColor" stroke="#fff" stroke-width="1.2" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </div>
+
+        <div class="flow-foot">
+          <p class="flow-cap" data-cap="0">1 · 拖着文件甩一甩鼠标，浮窗就出现在鼠标旁</p>
+          <p class="flow-cap" data-cap="1">2 · 顺手拖进浮窗，松手就收成一条</p>
+          <p class="flow-cap" data-cap="2">3 · 再从浮窗拖到目标窗口，直接在那边用</p>
+          <div class="flow-dots" aria-hidden="true">
+            <span class="flow-dot"></span><span class="flow-dot"></span><span class="flow-dot"></span>
+          </div>
+        </div>
+      </div>
+
+      <ol class="steps">
+        <!-- 第 1 步：视觉权重最高 -->
+        <li class="step step-lead reveal" id="wake">
+          <span class="step-num">1</span>
+          <div class="step-lead-copy">
+            <h3>唤出<span class="step-tag">默认配置</span></h3>
+            <p>应用装好后不会自己弹窗。先记住默认的唤起方式：</p>
+            <ul class="step-list">
+              <li><strong>把文件拖到屏幕左侧边缘的上半部分</strong>，贴边停留 <strong>0.3 秒</strong>，浮窗自动弹出来——这是默认配置。</li>
+              <li>也可以<strong>甩一甩鼠标</strong>，浮窗出现在鼠标旁边。</li>
+              <li>随时按 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Space</kbd>，或点一下托盘图标。</li>
+              <li>面板失焦后自动收起，不挡手头的事。</li>
+            </ul>
+          </div>
+          <div class="wake-visual">
+            <figure class="zone-card">
+              <div class="zone-stage" aria-hidden="true">
+                <span class="zone-tick zt-tl">上·左</span>
+                <span class="zone-tick zt-tr">上·右</span>
+                <span class="zone-tick zt-rt">右·上</span>
+                <span class="zone-tick zt-rb">右·下</span>
+                <span class="zone-tick zt-bl">下·左</span>
+                <span class="zone-tick zt-br">下·右</span>
+                <span class="zone-tick zt-lb">左·下</span>
+                <span class="zone-hot">左·上<em>主触发区</em></span>
+                <div class="zone-screen">
+                  <span class="zone-name">屏幕</span>
+                  <span class="zone-band"></span>
+                  <span class="zone-file"><i>X</i>报价单.xlsx</span>
+                  <span class="zone-dwell">0.3s</span>
+                  <div class="zone-panel">
+                    <i class="mini-panel-bar"></i>
+                    <i class="mini-row"></i><i class="mini-row"></i><i class="mini-row"></i>
+                  </div>
+                </div>
+              </div>
+              <figcaption>
+                <strong>主触发区：屏幕左侧边缘的上半部分</strong>
+                <span>拖到那里贴边停留 0.3 秒，浮窗从屏幕左侧滑出；其余七处也能在设置里选。</span>
+              </figcaption>
+            </figure>
+
+            <div class="wake-demo">
+              <div class="wake-stage wake-shake" aria-hidden="true">
+                <div class="mini-screen">
+                  <span class="shake-mark">↔</span>
+                  <span class="mini-cursor"></span>
+                  <span class="mini-panel">
+                    <i class="mini-panel-bar"></i>
+                    <i class="mini-row"></i><i class="mini-row"></i><i class="mini-row"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="wake-copy">
+                <h4>或者甩一甩鼠标</h4>
+                <p>鼠标快速左右甩一下，浮窗就出现在手边。</p>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="step reveal" data-delay="1">
+          <span class="step-num">2</span>
+          <h3>拖进来</h3>
+          <p>常用的表格、模板、常发的文件，一次拖一条，收成手边的条目。</p>
+          <ul class="step-list">
+            <li>文件、文件夹拖到面板上，松手就多一条：图标、名称、大小、路径都在。</li>
+            <li>一段文字、一个网址也能拖进来，变成可复制的条目。</li>
+            <li>拖到分组标签上松手，直接归进「常用表格」这类分组。</li>
+          </ul>
+        </li>
+
+        <li class="step reveal" data-delay="2">
+          <span class="step-num">3</span>
+          <h3>用起来</h3>
+          <p>需要时拖到目标窗口（文件管理器、微信聊天窗口、Word 文档内部），或者点一下悬浮出现的复制按钮。</p>
+          <ul class="step-list">
+            <li>拖到文件管理器：交出去的是文件本身。</li>
+            <li>拖到聊天窗口：文件落进输入区，文字落进输入框。</li>
+            <li>拖到 Word 正文：文字直接落在光标处。</li>
+            <li>不想拖时点复制按钮：文件进文件剪贴板，链接复制成 Markdown 链接。</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 产品是什么 ============ -->
+  <section id="what" class="section">
+    <div class="wrap what-grid">
+      <div class="what-copy reveal">
+        <p class="eyebrow">是什么</p>
+        <h2>常用文件，放在手边</h2>
+        <p class="sec-lead">
+          近取是一块常驻桌面的小面板：平时收着，唤出即见；常用的表格、模板、常发的文件按用途分组码好，
+          要用的那一刻拖出去就是。临时文件顺手放一下也行，但它首先是你的取用入口，不是又一个回收站。
+        </p>
+        <dl class="facts">
+          <div>
+            <dt>常驻手边，不占桌面</dt>
+            <dd>400×800 的悬浮窗，置顶显示，玻璃质感；平时收起，唤出即见，可拖到屏幕任意一侧。</dd>
+          </div>
+          <div>
+            <dt>按用途分组</dt>
+            <dd>全部 / 最近在用 / 常用表格 / 模板 / 图片素材……标签本身就是落点。</dd>
+          </div>
+          <div>
+            <dt>拖动就是全部操作</dt>
+            <dd>拖进来收好，拖出去就用；不想拖的时候，点一下复制按钮。</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="what-visual reveal" data-delay="1">
+        <img class="panel-plain" src="assets/img/panel-list.webp"
+               alt="近取面板列表视图实机截图，条目按分组排布，右侧显示文件大小" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 拖拽添加 ============ -->
+  <section id="drag-in" class="section section-tint">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">第 2 步的细节 · 拖拽添加</p>
+        <h2>拖进来，就存好了</h2>
+        <p class="sec-lead">
+          文件、文字、链接都能拖。松手的位置决定它去哪儿：拖到分组标签上，直接进那个组。
+        </p>
+      </div>
+
+      <div class="drag-demo reveal" aria-hidden="true">
+        <div class="demo-file">
+          <span class="file-ico doc">W</span>
+          <span class="file-name">周报-2026年第44周.docx</span>
+        </div>
+        <div class="demo-path">
+          <span class="demo-dot"></span>
+        </div>
+        <div class="demo-target">
+          <img src="assets/img/panel-list.webp" alt="" />
+          <div class="demo-ring">
+            <span>松开以添加到近取</span>
+          </div>
+        </div>
+      </div>
+      <p class="demo-note reveal">示意：拖入时面板会出现整层提示，松手后条目落到当前标签。</p>
+
+      <div class="in-grid">
+        <article class="card in-card reveal">
+          <div class="in-head">
+            <span class="in-badge">01</span>
+            <h3>文件 / 文件夹</h3>
+          </div>
+          <p>任意文件、文件夹拖到面板上，立刻多一条：类型图标、名称、大小、完整路径都在。</p>
+          <ul class="in-list">
+            <li>图片条目支持 <kbd>Ctrl</kbd> 悬停预览</li>
+            <li>文件夹单独带图标，不展开内容</li>
+            <li>文件被移走后，条目会标记失效</li>
+          </ul>
+        </article>
+        <article class="card in-card reveal" data-delay="1">
+          <div class="in-head">
+            <span class="in-badge">02</span>
+            <h3>文字</h3>
+          </div>
+          <p>一段话拖进来，就是一个可复制的文本条目；下次要发，拖出去或点复制都行。</p>
+          <ul class="in-list">
+            <li>粘贴时自动识别 <code>[名称](URL)</code></li>
+            <li>纯网址粘贴会先问你取个名称</li>
+            <li>文本条目没有文件，不落临时文件</li>
+          </ul>
+        </article>
+        <article class="card in-card reveal" data-delay="2">
+          <div class="in-head">
+            <span class="in-badge">03</span>
+            <h3>链接</h3>
+          </div>
+          <p>把网址拖进来，名称和地址分开存：列表里看到的是名字，拖出去的是干净的原网址。</p>
+          <ul class="in-list">
+            <li>Markdown 链接自动拆成名称 + 地址</li>
+            <li>悬浮时点复制，复制的是 Markdown 链接</li>
+            <li>拖到聊天框，落到输入框的是 URL 原文</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="feedback reveal">
+        <div class="feedback-item">
+          <span class="fb-icon">◎</span>
+          <div>
+            <h4>整层提示</h4>
+            <p>拖入过程中面板铺一层提示：松开以添加到近取，松手即入库。</p>
+          </div>
+        </div>
+        <div class="feedback-item">
+          <span class="fb-icon">▤</span>
+          <div>
+            <h4>标签高亮</h4>
+            <p>拖到某个分组标签上，标签高亮；在那儿松手，条目直接进那个分组。</p>
+          </div>
+        </div>
+        <div class="feedback-item">
+          <span class="fb-icon">♪</span>
+          <div>
+            <h4>轻音提示</h4>
+            <p>添加、复制有轻提示音，声音可在设置里一键关掉。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 拖拽分享 ============ -->
+  <section id="drag-out" class="section">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">第 3 步的细节 · 拖拽分享与复制</p>
+        <h2>拖出去，直接就到</h2>
+        <p class="sec-lead">
+          不用先复制再粘贴。按住条目直接拖到目标窗口，落到哪儿，就以那个应用能懂的形式交给它。
+        </p>
+      </div>
+
+      <div class="out-grid">
+        <article class="card out-card reveal">
+          <div class="out-visual">
+            <img src="assets/img/explorer-window.webp"
+                   alt="实机截图：资源管理器打开 demo 素材的图片文件夹，里面有白板照片、产品图、公司 Logo、海报初稿" />
+            <span class="pin pin-a">松手就是文件</span>
+          </div>
+          <div class="out-body">
+            <h3>拖到文件管理器</h3>
+            <p>文件、文件夹以系统文件拖放的形式交出去，落到文件夹里就是那个文件本身，复制或移动按 Windows 的规则来。</p>
+            <p class="note">文字和链接不会被做成临时文件，所以拖到文件管理器没有反应。</p>
+          </div>
+        </article>
+
+        <article class="card out-card reveal" data-delay="1">
+          <div class="out-visual">
+            <img class="anchor-bottom" src="assets/img/wechat-window.webp"
+                   alt="实机截图：微信聊天输入框与发送按钮，左侧会话内容已打码" />
+            <span class="pin pin-b">落在输入框</span>
+          </div>
+          <div class="out-body">
+            <h3>拖到微信聊天框</h3>
+            <p>文件落进输入区，是一条待发送的文件；文字和链接落进输入区，是可直接编辑的一段话。</p>
+            <p class="note">截图取自实机运行；左侧会话内容已打码处理。</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="type-strip reveal">
+        <div class="type-row">
+          <span class="type-key">文件 / 文件夹</span>
+          <span class="type-arrow">→</span>
+          <span class="type-val">系统文件拖放（CF_HDROP）：目标应用拿到的是真实文件</span>
+        </div>
+        <div class="type-row">
+          <span class="type-key">文字 / 链接</span>
+          <span class="type-arrow">→</span>
+          <span class="type-val">纯文本拖放（CF_UNICODETEXT）：目标应用拿到的是文字本身</span>
+        </div>
+        <div class="type-row">
+          <span class="type-key">复制按钮</span>
+          <span class="type-arrow">→</span>
+          <span class="type-val">文件进文件剪贴板，文字进文本剪贴板，链接复制成 Markdown 链接</span>
+        </div>
+      </div>
+      <p class="demo-note is-left reveal">说明：两种拖放的数据类型不同，所以同一个条目在不同目标应用里的表现也不同——文件管理器只认文件，聊天窗口两种都收。</p>
+    </div>
+  </section>
+
+  <!-- ============ 其他亮点 ============ -->
+  <section id="more" class="section section-tint">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">其他亮点</p>
+        <h2>该有的小地方，都做了</h2>
+        <p class="sec-lead">每一条都能在设置页里看到、关掉或改掉，不用猜。</p>
+      </div>
+      <div class="feat-grid">
+        <article class="feat reveal">
+          <span class="feat-ico">⌜</span>
+          <h3>屏幕左侧边缘的上半部分贴边唤出</h3>
+          <p>拖到屏幕左侧边缘的上半部分、贴边停留 0.3 秒，面板自己滑出来。八个方位可选，也能关掉。</p>
+        </article>
+        <article class="feat reveal" data-delay="1">
+          <span class="feat-ico">⌨</span>
+          <h3>全局快捷键</h3>
+          <p>默认 Ctrl + Alt + Space，在任何窗口都能唤出；组合键可自己录。</p>
+        </article>
+        <article class="feat reveal" data-delay="2">
+          <span class="feat-ico">↔</span>
+          <h3>甩一甩鼠标</h3>
+          <p>快速左右甩一下鼠标，面板就出来。不想用可以在设置里关掉。</p>
+        </article>
+        <article class="feat reveal" data-delay="3">
+          <span class="feat-ico">▤</span>
+          <h3>分组收纳</h3>
+          <p>标签就是落点：拖到「常用表格」松手，它就进那个组，不用再整理。</p>
+        </article>
+        <article class="feat reveal">
+          <span class="feat-ico">◐</span>
+          <h3>十套主题</h3>
+          <p>玻璃拟态、柔和界面、新拟物、Fluent、少女漫画风、手绘涂鸦风、着色器渐变、工程蓝图、暗黑，还有俏皮野兽派。</p>
+        </article>
+        <article class="feat reveal" data-delay="1">
+          <span class="feat-ico">▦</span>
+          <h3>四种视图</h3>
+          <p>列表、小图标、中图标、大图标，底部一键切换，按内容多少挑一种。</p>
+        </article>
+        <article class="feat reveal" data-delay="2">
+          <span class="feat-ico">⌫</span>
+          <h3>键盘也能操作</h3>
+          <p>Ctrl+A 全选、Delete 移除、F2 重命名、Enter 打开，不用摸鼠标。</p>
+        </article>
+        <article class="feat reveal" data-delay="3">
+          <span class="feat-ico">↻</span>
+          <h3>动态条目</h3>
+          <p>按规则定时去取最新的那个文件，列表里直接标「动态获取」和拿到的时间。</p>
+        </article>
+      </div>
+
+      <div class="theme-note reveal">
+        <div class="theme-copy">
+          <h3>主题、尺寸、视图，都在设置里</h3>
+          <p>换主题立即生效，重启也记得；面板尺寸四档，落点方向八向，配置还能导出和恢复默认。</p>
+        </div>
+        <img class="theme-shot" src="assets/img/settings.webp"
+               alt="近取设置页实机截图：外观主题九宫格、触发方式开关与快捷键设置" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 结尾 CTA（同时也是下载区块的落点 #download） ============ -->
+  <section class="cta" id="download">
+    <div class="wrap cta-inner reveal">
+      <img src="assets/img/mascot.webp" alt="" class="cta-mascot" width="72" height="72" />
+      <h2>把它放在手边</h2>
+      <p>从今天起，常用的东西不必再翻三层文件夹。</p>
+      <div class="hero-actions center">
+        <a class="btn" href="#download" data-download>
+          <svg class="dl-ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <path d="M8 1.8v7.1m0 0 2.9-2.9m-2.9 2.9-2.9-2.9M2.7 11.1v1.7c0 .9.7 1.6 1.6 1.6h7.4c.9 0 1.6-.7 1.6-1.6v-1.7"
+                  fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+          下载
+        </a>
+        <a class="btn btn-ghost" href="#drag-out">看它怎么拖出去</a>
+      </div>
+      <p class="cta-note">Windows 10/11 x64 安装包 · 约 2 MB · 本页所有界面截图均来自实机运行</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span>近取 · 就近取用</span>
+    <span>常用文件放在手边，要用时拖出去</span>
+  </div>
+</footer>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>
