@@ -26,6 +26,7 @@
       <a href="#what">是什么</a>
       <a href="#drag-in">拖进来</a>
       <a href="#drag-out">拖出去</a>
+      <a href="#dynamic">动态文件</a>
       <a href="#more">亮点</a>
     </nav>
     <a class="btn btn-sm" href="#download" data-download>
@@ -438,6 +439,206 @@
     </div>
   </section>
 
+  <!-- ============ 动态文件（Pro） ============ -->
+  <section id="dynamic" class="section">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">动态文件 · 盯住最新那一份</p>
+        <h2>不存文件，只存一条规则<span class="head-badge head-badge-pro">Pro 功能</span></h2>
+        <p class="sec-lead">
+          月度对账单、客户回传的报价单、每次发版换版本的安装包——文件一直在换，你要的永远是「最新那份」。
+          动态文件存下来的不是某个固定文件，而是一条规则：一个目录 + 一条文件名规则。
+          每次唤出面板，它按规则重新解析一遍，条目自己换成当下最新的那一个。
+        </p>
+      </div>
+
+      <!-- 机制：目录 → 匹配规则 → 取最新一条 → 悬浮窗里显示 -->
+      <div class="dyn-flow">
+        <div class="dyn-step reveal">
+          <span class="dyn-step-no">1</span>
+          <h3>一个目录</h3>
+          <p class="dyn-step-desc">文件都往这个目录里放，旧的不删也没关系。</p>
+          <div class="dyn-step-vis">
+            <div class="dyn-dir" aria-hidden="true">
+              <div class="dyn-dir-head"><span class="dyn-dir-ico">▤</span>D:\导出\对账单</div>
+              <ul>
+                <li>对账单_2026-08.xlsx</li>
+                <li>对账单_2026-09.xlsx</li>
+                <li class="is-new">对账单_2026-10.xlsx</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="dyn-step reveal" data-delay="1">
+          <span class="dyn-step-no">2</span>
+          <h3>一条文件名规则</h3>
+          <p class="dyn-step-desc">正则只认文件名，不符合的直接跳过。</p>
+          <div class="dyn-step-vis">
+            <div class="dyn-regex" aria-hidden="true"><b>^对账单_</b>\d{4}-\d{2}\.xlsx<b>$</b></div>
+            <p class="dyn-mini-note">也可以换成 <code>mode: "script"</code>：跑一段 Node 脚本，取输出数组的最后一条路径。</p>
+          </div>
+        </div>
+
+        <div class="dyn-step reveal" data-delay="2">
+          <span class="dyn-step-no">3</span>
+          <h3>排序，取最后一条</h3>
+          <p class="dyn-step-desc">按文件名（不区分大小写）正序排，取最后一个。</p>
+          <div class="dyn-step-vis">
+            <ul class="dyn-sort" aria-hidden="true">
+              <li>对账单_2026-08.xlsx</li>
+              <li>对账单_2026-09.xlsx</li>
+              <li class="is-new">对账单_2026-10.xlsx</li>
+            </ul>
+            <p class="dyn-mini-note">名字里带日期或版本号，最新的自然排到最后。</p>
+          </div>
+        </div>
+
+        <div class="dyn-step reveal" data-delay="3">
+          <span class="dyn-step-no">4</span>
+          <h3>悬浮窗里只留一条</h3>
+          <p class="dyn-step-desc">下次唤出，这一条已经指向 10 月那份。</p>
+          <div class="dyn-step-vis">
+            <div class="dyn-panel" aria-hidden="true">
+              <div class="dyn-panel-bar"><i></i><i></i><i></i></div>
+              <div class="dyn-row">
+                <span class="dyn-doc">X</span>
+                <span class="dyn-row-name">对账单_2026-10.xlsx</span>
+                <span class="dyn-row-tag">动态</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="demo-note is-left reveal">示意：目录里堆着多少文件都不影响结果——它只认「排序后的最后一条」，所以永远指向当下最新的那个。</p>
+
+      <!-- 时间推移：同一张卡片，指向的文件被换掉了 -->
+      <div class="dyn-time reveal">
+        <div class="dyn-time-day">
+          <p class="dyn-time-day-label">第 1 天</p>
+          <div class="dyn-panel" aria-hidden="true">
+            <div class="dyn-panel-bar"><i></i><i></i><i></i></div>
+            <div class="dyn-row">
+              <span class="dyn-doc">X</span>
+              <span class="dyn-row-name">对账单_10-01.xlsx</span>
+              <span class="dyn-row-tag">动态</span>
+            </div>
+          </div>
+          <p class="dyn-time-stamp">刷新于 · 2 小时前</p>
+        </div>
+        <div class="dyn-time-mid" aria-hidden="true">
+          <span class="dyn-time-arrow">→</span>
+          <p>目录里多了一个新文件<br />你没动过面板</p>
+        </div>
+        <div class="dyn-time-day">
+          <p class="dyn-time-day-label">第 3 天</p>
+          <div class="dyn-panel" aria-hidden="true">
+            <div class="dyn-panel-bar"><i></i><i></i><i></i></div>
+            <div class="dyn-row is-live">
+              <span class="dyn-doc">X</span>
+              <span class="dyn-row-name">对账单_10-03.xlsx</span>
+              <span class="dyn-row-tag">动态</span>
+            </div>
+          </div>
+          <p class="dyn-time-stamp">刷新于 · 刚刚</p>
+        </div>
+      </div>
+
+      <!-- 三个真实场景 -->
+      <div class="dyn-cases">
+        <article class="card dyn-case reveal">
+          <h3>财务 · 月度对账单</h3>
+          <p>每天从系统导一份对账单到同一个目录，文件名带年月。</p>
+          <div class="dyn-case-vis" aria-hidden="true">
+            <ul class="dyn-mini-list">
+              <li>对账单_2026-08.xlsx</li>
+              <li>对账单_2026-09.xlsx</li>
+              <li class="is-new">对账单_2026-10.xlsx</li>
+            </ul>
+            <span class="dyn-case-arrow">→</span>
+            <div class="dyn-panel">
+              <div class="dyn-panel-bar"><i></i><i></i><i></i></div>
+              <div class="dyn-row">
+                <span class="dyn-doc">X</span>
+                <span class="dyn-row-name">对账单_2026-10.xlsx</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card dyn-case reveal" data-delay="1">
+          <h3>职场 · 客户回传的报价单</h3>
+          <p>报价单模板目录，客户改完一次回传一版，版本号一直往后加。</p>
+          <div class="dyn-case-vis" aria-hidden="true">
+            <ul class="dyn-mini-list">
+              <li>报价单_客户A_v2.xlsx</li>
+              <li>报价单_客户A_v3.xlsx</li>
+              <li class="is-new">报价单_客户A_v4.xlsx</li>
+            </ul>
+            <span class="dyn-case-arrow">→</span>
+            <div class="dyn-panel">
+              <div class="dyn-panel-bar"><i></i><i></i><i></i></div>
+              <div class="dyn-row">
+                <span class="dyn-doc">X</span>
+                <span class="dyn-row-name">报价单_客户A_v4.xlsx</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card dyn-case reveal" data-delay="2">
+          <h3>开发 / 设计 · 构建产物</h3>
+          <p>每次发版打一个新包，文件名带版本号，旧包留在目录里不动。</p>
+          <div class="dyn-case-vis" aria-hidden="true">
+            <ul class="dyn-mini-list">
+              <li>近取_0.0.9_x64-setup.exe</li>
+              <li>近取_0.0.9b_x64-setup.exe</li>
+              <li class="is-new">近取_0.1.0_x64-setup.exe</li>
+            </ul>
+            <span class="dyn-case-arrow">→</span>
+            <div class="dyn-panel">
+              <div class="dyn-panel-bar"><i></i><i></i><i></i></div>
+              <div class="dyn-row">
+                <span class="dyn-doc">↓</span>
+                <span class="dyn-row-name">近取_0.1.0_x64-setup.exe</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- 要填什么 -->
+      <div class="dyn-config">
+        <div class="dyn-field reveal">
+          <span class="dyn-field-label">目录</span>
+          <div class="dyn-field-val">D:\导出\对账单</div>
+          <p>要盯的目录。脚本模式可以留空，默认在用户目录下执行。</p>
+        </div>
+        <div class="dyn-field reveal" data-delay="1">
+          <span class="dyn-field-label">文件名规则 / 脚本</span>
+          <div class="dyn-field-val">^对账单_\d{4}-\d{2}\.xlsx$</div>
+          <p>默认按正则匹配文件名；也支持 <code>mode: "script"</code>，脚本输出 JSON 数组，取最后一项。</p>
+        </div>
+        <div class="dyn-field reveal" data-delay="2">
+          <span class="dyn-field-label">取第几条</span>
+          <div class="dyn-field-val">固定：排序后最后一条</div>
+          <p>不用选序号。名字里带日期或版本号，最新的自然排在最后。</p>
+        </div>
+      </div>
+
+      <div class="dyn-pro reveal">
+        <span class="badge-pro">Pro</span>
+        <div>
+          <h3>动态文件是 Pro 功能</h3>
+          <p>
+            新建、修改规则与手动刷新都由授权校验把关：免费版创建动态文件、刷新动态文件都会被拒绝。
+            免费版可试用 Pro 14 天，试用期内可以正常创建与刷新。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ 其他亮点 ============ -->
   <section id="more" class="section section-tint">
     <div class="wrap">
@@ -484,15 +685,15 @@
         </article>
         <article class="feat reveal" data-delay="3">
           <span class="feat-ico">↻</span>
-          <h3>动态条目</h3>
-          <p>按规则定时去取最新的那个文件，列表里直接标「动态获取」和拿到的时间。</p>
+          <h3>动态文件 <span class="feat-pro">Pro</span></h3>
+          <p>按「目录 + 文件名规则」盯住最新那份，列表里标「动态获取」和拿到的时间。<a class="feat-link" href="#dynamic">怎么配 →</a></p>
         </article>
       </div>
 
       <div class="theme-note reveal">
         <div class="theme-copy">
           <h3>主题、尺寸、视图，都在设置里</h3>
-          <p>换主题立即生效，重启也记得；面板尺寸四档，落点方向八向，配置还能导出和恢复默认。</p>
+          <p>默认主题免费，其它主题 10 分钟体验、累计不重置、到期自动回默认；面板尺寸四档，落点方向八向，配置还能导出和恢复默认。</p>
         </div>
         <img class="theme-shot" src="assets/img/settings.webp"
                alt="近取设置页实机截图：外观主题九宫格、触发方式开关与快捷键设置" />
