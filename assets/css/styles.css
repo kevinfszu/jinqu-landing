@@ -1394,6 +1394,27 @@ code, kbd {
 }
 .foot-inner { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 
+/* 爱发电主页：创作者申请要求在落地页公开宣传，这里页尾常驻一条直达链接 */
+.foot-support {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  font-size: 12.5px;
+}
+.foot-support a, .cta-support a {
+  color: var(--coral-deep);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--coral) 45%, transparent);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--dur, 160ms) ease, color var(--dur, 160ms) ease;
+}
+.foot-support a:hover, .cta-support a:hover {
+  color: var(--coral);
+  text-decoration-color: var(--coral);
+}
+
 /* ---------- 动态文件（Pro） ---------- */
 .head-badge-pro {
   background: linear-gradient(135deg, #f07a46, var(--coral-deep));

@@ -1,6 +1,7 @@
 // 把落地页打包成可离线双击打开的单个 HTML 文件：
-// CSS / JS / 图片 / favicon / Windows 安装包全部以内联方式塞进 index.html。
-// 同时负责把 tauri build 的安装包复制到 download/ 并同步 index.html 的下载地址。
+// CSS / JS / 图片 / favicon 全部内联，页面本身不再依赖任何外部文件。
+// 安装包不再内嵌，单独分发；本脚本同时负责把 tauri build 的安装包复制到 download/
+// 并同步 index.html 的下载地址。
 // 用法：node tools/build-standalone.mjs
 import {
   readFileSync,
@@ -16,7 +17,7 @@ import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const outDir = join(root, "dist");
-const outFile = join(outDir, "jinqu-landing-standalone.html");
+const outFile = join(outDir, "近取·就近取用.html");
 
 // 安装包文件名带版本号，跟着 tauri.conf.json 走。
 const version = JSON.parse(
@@ -48,16 +49,17 @@ console.log(`已复制 ${installers[0].name} -> download/${INSTALLER_NAME}（${s
 
 // 2. 下载地址只写在 index.html 的 data-download-url 一处，版本改名后同步这一行
 const htmlPath = join(root, "index.html");
-const htmlSource = readFileSync(htmlPath, "utf8");
+let html = readFileSync(htmlPath, "utf8");
 const urlAttr = /data-download-url="[^"]*"/;
 
-if (!urlAttr.test(htmlSource)) {
+if (!urlAttr.test(html)) {
   console.warn("index.html 里没有找到 data-download-url，跳过了下载链接同步");
 } else {
-  const next = htmlSource.replace(urlAttr, `data-download-url="download/${INSTALLER_NAME}"`);
-  if (next !== htmlSource) {
+  const next = html.replace(urlAttr, `data-download-url="download/${INSTALLER_NAME}"`);
+  if (next !== html) {
     writeFileSync(htmlPath, next, "utf8");
     console.log(`已更新 index.html 的下载链接 -> download/${INSTALLER_NAME}`);
+    html = next;
   }
 }
 
@@ -76,7 +78,6 @@ const dataUri = (p) => {
   return `data:${MIME[ext] || "application/octet-stream"};base64,${b64}`;
 };
 
-const html = htmlSource;
 const css = read(join(root, "assets/css/styles.css"));
 const js = read(join(root, "assets/js/script.js"));
 
@@ -91,79 +92,30 @@ for (const [asset, content, closer] of [
 
 let out = html;
 
-// 1. 样式表 → <style>
+// 3. 样式表 → <style>
 out = out.replace(
   /<link rel="stylesheet" href="assets\/css\/styles\.css" \/>/,
   () => `<style>\n${css}\n</style>`
 );
 
-// 2. 脚本 → <script>
+// 4. 脚本 → <script>
 out = out.replace(
   /<script src="assets\/js\/script\.js"><\/script>/,
   () => `<script>\n${js}\n</script>`
 );
 
-// 3. favicon 与正文图片 → data URI
+// 5. favicon 与正文图片 → data URI
 out = out.replace(/(href|src)="(assets\/img\/[^"]+)"/g, (match, attr, path) => {
   const abs = join(root, path);
   return `${attr}="${dataUri(abs)}"`;
 });
 
-// 4. 安装包不再是同源相对路径，交给下面的内嵌下载逻辑处理
-out = out.replace(/data-download-url="[^"]*"/, 'data-download-url=""');
-
-// 5. 内嵌安装包（base64 只含 A-Za-z0-9+/=，不会干扰 </script> 解析）
-const installerB64 = readFileSync(INSTALLER).toString("base64");
-const payload = `<script type="text/plain" id="installer-b64">${installerB64}</script>`;
-
-const downloader = `<script>
-// 单文件分发专用：安装包以 base64 内嵌在本页，点击时现场解成 Blob 再触发下载。
-(function () {
-  var node = document.getElementById("installer-b64");
-  if (!node) return;
-
-  var NAME = ${JSON.stringify(INSTALLER_NAME)};
-  var b64 = node.textContent.replace(/\\s+/g, "");
-  var blobUrl = null;
-
-  function ensureBlob() {
-    if (blobUrl) return blobUrl;
-    var bin = atob(b64);
-    var bytes = new Uint8Array(bin.length);
-    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-    blobUrl = URL.createObjectURL(new Blob([bytes], { type: "application/octet-stream" }));
-    return blobUrl;
-  }
-
-  document.querySelectorAll("[data-download]").forEach(function (link) {
-    link.setAttribute("download", NAME);
-    link.addEventListener("click", function (event) {
-      event.preventDefault();
-      var url;
-      try {
-        url = ensureBlob();
-      } catch (err) {
-        console.error("安装包解包失败", err);
-        return;
-      }
-      var tmp = document.createElement("a");
-      tmp.href = url;
-      tmp.download = NAME;
-      document.body.appendChild(tmp);
-      tmp.click();
-      tmp.remove();
-    });
-  });
-})();
-</script>`;
-
-out = out.replace("</body>", `${payload}\n${downloader}\n</body>`);
+// 6. 独立分发的 html 与安装包放在同一目录，下载地址去掉 download/ 前缀
+out = out.replace(urlAttr, () => `data-download-url="${INSTALLER_NAME}"`);
 
 mkdirSync(outDir, { recursive: true });
 writeFileSync(outFile, out, "utf8");
 
 const kb = (n) => `${(n / 1024).toFixed(0)} KB`;
-console.log(`已生成 ${relative(root, outFile)}`);
-console.log(`  页面 ${kb(html.length)} + 样式 ${kb(css.length)} + 脚本 ${kb(js.length)}`);
-console.log(`  内嵌安装包 ${kb(installerB64.length)}（base64）`);
-console.log(`  合计 ${kb(out.length)}`);
+console.log(`已生成 ${relative(root, outFile)}（${kb(out.length)}）`);
+console.log(`  下载按钮指向同目录的 ${INSTALLER_NAME}，需与安装包一起分发`);
