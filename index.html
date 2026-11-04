@@ -22,7 +22,8 @@
     </div>
     <nav class="nav">
       <a href="#pain">痛点</a>
-      <a href="#start">解决方案：三步上手</a>
+      <a href="#solution">解决方案</a>
+      <a href="#start">三步上手</a>
       <a href="#what">是什么</a>
       <a href="#drag-in">拖进来</a>
       <a href="#drag-out">拖出去</a>
@@ -79,33 +80,59 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <p class="eyebrow">日常</p>
-        <h2>痛点：东西都在，就是不在手边</h2>
-        <p class="sec-lead">
-          常用的文件和链接，散在下载目录、桌面、聊天记录和三四层深的文件夹里。
-          真要用的那一刻，得从这些地方一路翻过去，时间花在找，而不是用。
-        </p>
+        <h2>痛点：常用文件归了档，取用还得跑一趟</h2>
+        <p class="sec-lead">常用的文件大多分过类：按业务、按客户、按项目，文件夹和笔记都归得清楚。可正因为分在不同地方，每用一次都要离开当前工作界面，去资源管理器点进几层、到笔记里翻出那一条，复制，再切回来粘贴。</p>
+        <p class="sec-note">单看每次只是几十秒，不值得专门想办法；可一天重复很多遍，就成了说不出的别扭。</p>
       </div>
-      <div class="pain-grid">
-        <article class="card pain reveal">
-          <span class="num">01</span>
-          <h3>下载目录是一条倒序流水</h3>
-          <p>表格、图片、安装包全按时间堆在同一个列表里，名字还常常只差一个日期。</p>
-        </article>
-        <article class="card pain reveal" data-delay="1">
-          <span class="num">02</span>
-          <h3>桌面上的文件被窗口盖住</h3>
-          <p>常用的几份摊在桌面，一开窗口就压在下面，只能先最小化窗口再翻找。</p>
-        </article>
-        <article class="card pain reveal" data-delay="2">
-          <span class="num">03</span>
-          <h3>链接沉在聊天记录里</h3>
-          <p>上周发过的地址，要往上翻两屏才见得到；翻到了，还得再复制一次。</p>
-        </article>
-        <article class="card pain reveal" data-delay="3">
-          <span class="num">04</span>
-          <h3>深层文件夹要连点四下</h3>
-          <p>项目 / 客户 / 2026 / 终版_v3，要用的那一份在最里面，每周都要重走一遍这条路径。</p>
-        </article>
+      <p class="sec-close reveal">不缺文件，不缺信息，缺的是一次不用切走的取用。</p>
+    </div>
+  </section>
+
+  <!-- ============ 解决方案：前后对比 ============ -->
+  <section id="solution" class="section">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">对比</p>
+        <h2>解决方案：以前七步，现在一拖</h2>
+        <p class="sec-lead">同一批常用东西，取的还是那几样，只是不必再离开当前工作界面。下表按四种最常见的出处逐条对照。</p>
+      </div>
+      <div class="cmp reveal">
+        <table class="cmp-table">
+          <thead>
+            <tr>
+              <th scope="col">常用东西在哪</th>
+              <th scope="col">用「近取」之前</th>
+              <th scope="col">用「近取」之后</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">文件夹里，四层之后</th>
+              <td data-label="之前">离开工作界面 → 点开四层 → 找到文件 → 复制 → 切回 → 粘贴</td>
+              <td data-label="之后">唤出浮窗，把文件拖进当前窗口</td>
+            </tr>
+            <tr>
+              <th scope="row">桌面上，压在最底下</th>
+              <td data-label="之前">先最小化窗口 → 翻出文件 → 复制 → 切回 → 粘贴</td>
+              <td data-label="之后">不用最小化，直接从浮窗拖出</td>
+            </tr>
+            <tr>
+              <th scope="row">聊天记录里，往上两屏</th>
+              <td data-label="之前">切到聊天 → 往上翻两屏 → 复制链接 → 切回 → 粘贴</td>
+              <td data-label="之后">复制过的链接已在浮窗，点一下就取用</td>
+            </tr>
+            <tr>
+              <th scope="row">笔记里，翻不到那条</th>
+              <td data-label="之前">打开笔记 → 从头往下翻 → 复制 → 切回 → 粘贴</td>
+              <td data-label="之后">唤出浮窗，把笔记文本拖进当前窗口</td>
+            </tr>
+            <tr class="cmp-total">
+              <th scope="row">合计一趟</th>
+              <td data-label="之前">七步，来回切两次界面</td>
+              <td data-label="之后">一拖，不用离开</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
@@ -115,7 +142,7 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <p class="eyebrow">上手 · 先学会这一下</p>
-        <h2>解决方案：三步，就顺了<span class="head-badge">第 1 步 · 最关键</span></h2>
+        <h2>三步上手<span class="head-badge">第 1 步 · 最关键</span></h2>
         <p class="sec-lead">
           装好之后它不会自己弹出来，先用一个小动作把它叫到眼前。
           之后就三步：唤出 → 收进来 → 拖出去。

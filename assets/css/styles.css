@@ -331,21 +331,53 @@ code, kbd {
 }
 
 /* ---------- 痛点 ---------- */
-.pain-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
+.sec-note {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  opacity: .9;
 }
-.pain .num {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  color: var(--coral);
-  margin-bottom: 14px;
+
+.cmp {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, .82);
+  padding: clamp(18px, 2.2vw, 28px);
 }
-.pain h3 { font-size: 18px; margin-bottom: 8px; }
-.pain p { color: var(--muted); font-size: 14.5px; }
+.cmp-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.cmp-table th,
+.cmp-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 12px 14px;
+  border-top: 1px solid var(--line);
+}
+.cmp-table thead th {
+  border-top: 0;
+  padding-top: 0;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  color: var(--muted);
+}
+.cmp-table tbody th {
+  width: 24%;
+  font-size: 14.5px;
+  font-weight: 600;
+}
+.cmp-table tbody td { color: var(--muted); line-height: 1.65; }
+.cmp-table tbody tr:not(.cmp-total) td:last-child { color: inherit; font-weight: 500; }
+.cmp-table tbody tr:hover { background: rgba(0, 0, 0, .015); }
+.cmp-total,
+.cmp-table tbody tr.cmp-total:hover { background: rgba(232, 102, 58, .07); }
+.cmp-total th { color: inherit; }
+.cmp-table tbody tr.cmp-total td { font-weight: 600; color: var(--coral); }
+
+.sec-close {
+  margin-top: 22px;
+  font-size: clamp(16px, 1.6vw, 19px);
+  font-weight: 600;
+}
 
 /* ---------- 是什么 ---------- */
 .what-grid {
@@ -1713,7 +1745,6 @@ code, kbd {
   .float-chip-b { right: 4%; }
   .what-grid { grid-template-columns: 1fr; }
   .what-visual { order: -1; }
-  .pain-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .feat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .theme-note { grid-template-columns: 1fr; }
   .theme-shot { margin: 0 auto; max-height: 420px; }
@@ -1740,7 +1771,33 @@ code, kbd {
   .type-arrow { display: none; }
   .type-strip { border-radius: 16px; }
   .out-visual { height: 240px; }
-  .pain-grid, .feat-grid { grid-template-columns: 1fr; }
+  .feat-grid { grid-template-columns: 1fr; }
+  .cmp-table thead { display: none; }
+  .cmp-table,
+  .cmp-table tbody,
+  .cmp-table tr,
+  .cmp-table th,
+  .cmp-table td { display: block; width: auto; }
+  .cmp-table tr {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .cmp-table tr:hover { background: transparent; }
+  .cmp-table th,
+  .cmp-table td { border-top: 0; padding: 4px 0; }
+  .cmp-table tbody th { width: auto; margin-bottom: 6px; }
+  .cmp-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    color: var(--muted);
+    opacity: .75;
+    margin-bottom: 2px;
+  }
   .cta-inner { border-radius: 24px; }
   .foot-inner { flex-direction: column; }
   .head-badge { display: inline-block; margin-left: 8px; font-size: 11px; padding: 2px 8px; }
