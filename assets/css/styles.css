@@ -1388,21 +1388,34 @@ code, kbd {
 /* ---------- 页脚 ---------- */
 .foot {
   border-top: 1px solid var(--line);
-  padding: 26px 0 40px;
+  padding: 34px 0 44px;
   font-size: 13px;
   color: var(--muted);
 }
-.foot-inner { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.foot-inner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(18px, 3.4vw, 44px);
+}
+.foot-brand { display: flex; align-items: center; gap: 11px; min-width: 0; }
+.foot-brand img { flex: none; border-radius: 9px; }
+.foot-brand-copy { display: grid; gap: 2px; min-width: 0; }
+.foot-name { font-size: 14.5px; font-weight: 700; color: var(--ink); }
+.foot-tag { font-size: 12.5px; }
+.foot-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px clamp(12px, 2vw, 22px);
+  font-size: 13px;
+}
+.foot-nav a { color: var(--ink-2); transition: color 160ms ease; }
+.foot-nav a:hover { color: var(--coral-deep); }
+.foot-actions { display: grid; justify-items: end; gap: 9px; }
+.foot-support { font-size: 12.5px; }
 
 /* 爱发电主页：创作者申请要求在落地页公开宣传，这里页尾常驻一条直达链接 */
-.foot-support {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 10px;
-  font-size: 12.5px;
-}
 .foot-support a, .cta-support a {
   color: var(--coral-deep);
   text-decoration: underline;
@@ -1850,6 +1863,9 @@ code, kbd {
   .dyn-time-arrow { transform: rotate(90deg); margin-bottom: 6px; }
   .dyn-case-vis { gap: 6px; }
   .dyn-pro { grid-template-columns: 1fr; gap: 12px; }
+  .foot-inner { grid-template-columns: 1fr; gap: 18px; }
+  .foot-nav { justify-content: flex-start; }
+  .foot-actions { justify-items: start; }
   .dyn-field { padding: 16px; }
 }
 
